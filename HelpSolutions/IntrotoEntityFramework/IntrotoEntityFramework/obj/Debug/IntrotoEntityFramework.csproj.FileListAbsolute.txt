@@ -1,0 +1,10 @@
+C:\Users\codingtemple-1\Documents\MW\IntrotoEntityFramework\IntrotoEntityFramework\bin\Debug\IntrotoEntityFramework.exe.config
+C:\Users\codingtemple-1\Documents\MW\IntrotoEntityFramework\IntrotoEntityFramework\bin\Debug\IntrotoEntityFramework.exe
+C:\Users\codingtemple-1\Documents\MW\IntrotoEntityFramework\IntrotoEntityFramework\bin\Debug\IntrotoEntityFramework.pdb
+C:\Users\codingtemple-1\Documents\MW\IntrotoEntityFramework\IntrotoEntityFramework\bin\Debug\EntityFramework.dll
+C:\Users\codingtemple-1\Documents\MW\IntrotoEntityFramework\IntrotoEntityFramework\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\codingtemple-1\Documents\MW\IntrotoEntityFramework\IntrotoEntityFramework\bin\Debug\EntityFramework.xml
+C:\Users\codingtemple-1\Documents\MW\IntrotoEntityFramework\IntrotoEntityFramework\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\codingtemple-1\Documents\MW\IntrotoEntityFramework\IntrotoEntityFramework\obj\Debug\IntrotoEntityFramework.csprojResolveAssemblyReference.cache
+C:\Users\codingtemple-1\Documents\MW\IntrotoEntityFramework\IntrotoEntityFramework\obj\Debug\IntrotoEntityFramework.exe
+C:\Users\codingtemple-1\Documents\MW\IntrotoEntityFramework\IntrotoEntityFramework\obj\Debug\IntrotoEntityFramework.pdb

@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Store" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="StoreContainer1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Addresses" EntityType="Store.Address" />
+    <EntitySet Name="Employees" EntityType="Store.Employee" />
+    <EntitySet Name="Levels" EntityType="Store.Level" />
+    <EntitySet Name="Positions" EntityType="Store.Position" />
+    <EntitySet Name="vwEmployeePositions" EntityType="Store.vwEmployeePosition" />
+    <AssociationSet Name="FK_Employee_Address" Association="Store.FK_Employee_Address">
+      <End Role="Address" EntitySet="Addresses" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Position" Association="Store.FK_Employee_Position">
+      <End Role="Position" EntitySet="Positions" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Position_Level" Association="Store.FK_Position_Level">
+      <End Role="Level" EntitySet="Levels" />
+      <End Role="Position" EntitySet="Positions" />
+    </AssociationSet>
+    <FunctionImport Name="GetEmployeePositionById" EntitySet="Positions" ReturnType="Collection(Store.Position)">
+      <Parameter Name="EmployeeId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetEmployeesByAddressId" EntitySet="Employees" ReturnType="Collection(Store.Employee)">
+      <Parameter Name="AddressId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetEmployeesByLevelId" EntitySet="Employees" ReturnType="Collection(Store.Employee)">
+      <Parameter Name="LevelId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetEmployeesByLevelName" EntitySet="Employees" ReturnType="Collection(Store.Employee)">
+      <Parameter Name="LevelName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetEmployeesByPositionId" EntitySet="Employees" ReturnType="Collection(Store.Employee)">
+      <Parameter Name="PositionId" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Address1" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Address2" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Zipcode" Type="Int32" Nullable="false" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Employees" Relationship="Store.FK_Employee_Address" FromRole="Address" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="AddressId" Type="Int32" />
+    <Property Name="Salary" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="PositionId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Address" Relationship="Store.FK_Employee_Address" FromRole="Employee" ToRole="Address" />
+    <NavigationProperty Name="Position" Relationship="Store.FK_Employee_Position" FromRole="Employee" ToRole="Position" />
+  </EntityType>
+  <EntityType Name="Level">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Positions" Relationship="Store.FK_Position_Level" FromRole="Level" ToRole="Position" />
+  </EntityType>
+  <EntityType Name="Position">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="LevelId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employees" Relationship="Store.FK_Employee_Position" FromRole="Position" ToRole="Employee" />
+    <NavigationProperty Name="Level" Relationship="Store.FK_Position_Level" FromRole="Position" ToRole="Level" />
+  </EntityType>
+  <EntityType Name="vwEmployeePosition">
+    <Key>
+      <PropertyRef Name="Level_Name" />
+      <PropertyRef Name="PostionName" />
+      <PropertyRef Name="EmployeeId" />
+      <PropertyRef Name="EmployeeName" />
+      <PropertyRef Name="Salary" />
+    </Key>
+    <Property Name="Level_Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="PostionName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="AddressId" Type="Int32" />
+    <Property Name="Salary" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+  </EntityType>
+  <Association Name="FK_Employee_Address">
+    <End Type="Store.Address" Role="Address" Multiplicity="0..1" />
+    <End Type="Store.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="AddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Position">
+    <End Type="Store.Position" Role="Position" Multiplicity="1" />
+    <End Type="Store.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="PositionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Position_Level">
+    <End Type="Store.Level" Role="Level" Multiplicity="1" />
+    <End Type="Store.Position" Role="Position" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Level">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Position">
+        <PropertyRef Name="LevelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

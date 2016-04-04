@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+  <Alias Key="Model" Value="Store" />
+  <Alias Key="Target" Value="Store.Store" />
+  <EntityContainerMapping CdmEntityContainer="StoreContainer1" StorageEntityContainer="StoreStoreContainer">
+    <EntitySetMapping Name="Addresses">
+      <EntityTypeMapping TypeName="Store.Address">
+        <MappingFragment StoreEntitySet="Address">
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address1" ColumnName="Address" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="Store.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Levels">
+      <EntityTypeMapping TypeName="Store.Level">
+        <MappingFragment StoreEntitySet="Level">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Positions">
+      <EntityTypeMapping TypeName="Store.Position">
+        <MappingFragment StoreEntitySet="Position">
+          <ScalarProperty Name="LevelId" ColumnName="LevelId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vwEmployeePositions">
+      <EntityTypeMapping TypeName="Store.vwEmployeePosition">
+        <MappingFragment StoreEntitySet="vwEmployeePosition">
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="PostionName" ColumnName="PostionName" />
+          <ScalarProperty Name="Level_Name" ColumnName="Level Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetEmployeePositionById" FunctionName="Store.Store.GetEmployeePositionById" />
+    <FunctionImportMapping FunctionImportName="GetEmployeesByAddressId" FunctionName="Store.Store.GetEmployeesByAddressId" />
+    <FunctionImportMapping FunctionImportName="GetEmployeesByLevelId" FunctionName="Store.Store.GetEmployeesByLevelId" />
+    <FunctionImportMapping FunctionImportName="GetEmployeesByLevelName" FunctionName="Store.Store.GetEmployeesByLevelName" />
+    <FunctionImportMapping FunctionImportName="GetEmployeesByPositionId" FunctionName="Store.Store.GetEmployeesByPositionId" />
+  </EntityContainerMapping>
+</Mapping>
