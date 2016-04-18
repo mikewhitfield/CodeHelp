@@ -1,0 +1,93 @@
+﻿@model CityTours.Data.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_CityLayout.cshtml";
+}
+    <!-- Content -->
+<div class="banner-wrapper">
+    <section>
+        <article class="banner detail"></article>
+    </section>
+</div>
+
+
+<div class="container details">
+    <section class="clearfix">
+        <aside class="col col-1-3">
+
+                <header><h4>Booking</h4></header>
+                <div class="click-form clearfix">
+                    <!-- Adults Clicker-->
+                    <div id="adults" class="clicker col col-1-2 clearfix">
+                        <strong>Adults</strong>
+                        <span class="minus"><a href="#">-</a></span>
+                        <span class="click-num">Num</span>
+                        <span class="plus"><a href="#">+</a></span>
+                    </div>
+
+                    <!-- Kids Clicker-->
+                    <div id="kids" class="clicker col-r col-1-2">
+                        <strong>Chidren</strong>
+                        <span class="minus"><a href="#">-</a></span>
+                        <span class="click-num">Num</span>
+                        <span class="plus"><a href="#">+</a></span>
+                    </div>
+
+                    <div class="display-clicks">
+                        <div class="clearfix click-row adults">
+                            <label class="col">Adults</label><label class="col-r row-total">2</label>
+                        </div>
+                        <div class="clearfix click-row kids">
+                            <label class="col">Children</label><label class="col-r row-total">0</label>
+                        </div>
+                        <div class="clearfix total-cost">
+                            <label class="pink col">Total</label> <label class="pink col-r total">$100</label>
+                        </div>
+                        <div>
+
+                          
+                            @using (Html.BeginForm("Create", "CartItem", FormMethod.Post))
+                            {
+                                <input class="newTotal" name="total" type="hidden" value=""/>
+                                <input class="ProdId" name="productId" type="hidden" value="@Model.Id"/>
+
+                                <input class="click-btn" type="submit" value="Click" />
+                            }
+                        </div>
+                    </div>
+                </div>
+ 
+
+            <div class="side-support">
+                <img src="~/Images/support_guy.gif" />
+                <span class="help">Book <span class="pink">by phone</span></span>
+                <span class="tel">630 888 2000</span>
+                <span class="hours">Monday though Friday 9:00 AM to 7:30 PM</span>
+            </div>
+
+        </aside>
+
+        <div class="product-detail col col-2-3">
+            <article class="clearfix">
+
+                <article class="prod-detail-info">
+
+                            <header><h3>@Model.Name</h3></header>
+                            <p>@Model.Summary</p>
+
+                            <div class="gallery">
+                                <img src="@Model.ImageUrl" alt="" class="main-img" />
+                                <div class="thumbs">
+
+                                </div>
+                            </div>
+
+                </article>
+            </article>
+        </div>
+
+    </section>
+
+</div>
+<!-- Content -->
